@@ -1,8 +1,8 @@
-const CACHE = 'rageball-v1';
+const CACHE = 'spikepanic-v1';
 const ASSETS = [
-  '/GameRage/',
-  '/GameRage/index.html',
-  '/GameRage/manifest.json',
+  '/SpikePanic/',
+  '/SpikePanic/index.html',
+  '/SpikePanic/manifest.json',
 ];
 
 self.addEventListener('install', e => {

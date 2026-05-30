@@ -3,6 +3,11 @@ let masterGain, musicGain, sfxGain;
 let musicLoop = null;
 let musicPlaying = false;
 
+let _musicVol = 0.5;
+let _sfxVol = 0.8;
+let _musicMuted = false;
+let _sfxMuted = false;
+
 function getCtx() {
   if (!ctx) {
     ctx = new (window.AudioContext || window.webkitAudioContext)();
@@ -11,17 +16,18 @@ function getCtx() {
     masterGain.connect(ctx.destination);
 
     musicGain = ctx.createGain();
-    musicGain.gain.value = 0.5;
+    musicGain.gain.value = _musicMuted ? 0 : _musicVol;
     musicGain.connect(masterGain);
 
     sfxGain = ctx.createGain();
-    sfxGain.gain.value = 0.8;
+    sfxGain.gain.value = _sfxMuted ? 0 : _sfxVol;
     sfxGain.connect(masterGain);
   }
   return ctx;
 }
 
 function playTone(freq, type, duration, vol, startDelay = 0, fadeOut = true) {
+  if (_sfxMuted) return;
   const c = getCtx();
   if (c.state === 'suspended') c.resume();
   const osc = c.createOscillator();
@@ -40,6 +46,7 @@ function playTone(freq, type, duration, vol, startDelay = 0, fadeOut = true) {
 }
 
 function playNoise(duration, vol, filterFreq = 2000) {
+  if (_sfxMuted) return;
   const c = getCtx();
   if (c.state === 'suspended') c.resume();
   const buf = c.createBuffer(1, c.sampleRate * duration, c.sampleRate);
@@ -62,9 +69,29 @@ function playNoise(duration, vol, filterFreq = 2000) {
 }
 
 export const Audio = {
-  setMusicVol(v)  { if (musicGain) musicGain.gain.value = v; },
-  setSfxVol(v)    { if (sfxGain)   sfxGain.gain.value = v; },
+  setMusicVol(v) {
+    _musicVol = v;
+    if (musicGain && !_musicMuted) musicGain.gain.value = v;
+  },
+  setSfxVol(v) {
+    _sfxVol = v;
+    if (sfxGain && !_sfxMuted) sfxGain.gain.value = v;
+  },
   setMasterVol(v) { if (masterGain) masterGain.gain.value = v; },
+
+  setMusicMute(muted) {
+    _musicMuted = muted;
+    if (musicGain) musicGain.gain.value = muted ? 0 : _musicVol;
+    if (muted && musicPlaying) { this.stopMusic(); }
+    else if (!muted && !musicPlaying) { this.startMusic(); }
+  },
+  setSfxMute(muted) {
+    _sfxMuted = muted;
+    if (sfxGain) sfxGain.gain.value = muted ? 0 : _sfxVol;
+  },
+
+  isMusicMuted: () => _musicMuted,
+  isSfxMuted:   () => _sfxMuted,
 
   jump() {
     playTone(220, 'square', 0.08, 0.3);
@@ -110,7 +137,7 @@ export const Audio = {
   },
 
   startMusic() {
-    if (musicPlaying) return;
+    if (musicPlaying || _musicMuted) return;
     musicPlaying = true;
     const c = getCtx();
     if (c.state === 'suspended') c.resume();

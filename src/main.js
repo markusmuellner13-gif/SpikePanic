@@ -52,9 +52,11 @@ document.addEventListener('click', () => {
   const settings = st.settings || {};
   Audio.setMusicVol(settings.musicVol ?? 0.5);
   Audio.setSfxVol(settings.sfxVol ?? 0.8);
+  Audio.setMusicMute(settings.musicEnabled === false);
+  Audio.setSfxMute(settings.sfxEnabled === false);
 }, { once: true });
 
 // Expose for Electron / Steam bridge
-window.__RAGE_GAME = game;
-window.__RAGE_STORAGE = Storage;
-window.__RAGE_AUDIO = Audio;
+window.__SPIKE_GAME = game;
+window.__SPIKE_STORAGE = Storage;
+window.__SPIKE_AUDIO = Audio;

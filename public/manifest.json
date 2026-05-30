@@ -1,8 +1,8 @@
 {
-  "name": "RAGE BALL",
-  "short_name": "RAGE BALL",
-  "description": "One ball. Infinite rage. Zero mercy. A physics rage platformer.",
-  "start_url": "/GameRage/",
+  "name": "SPIKE PANIC",
+  "short_name": "SPIKE PANIC",
+  "description": "Dodge. Jump. Rage. Repeat. A brutal rage physics platformer.",
+  "start_url": "/SpikePanic/",
   "display": "standalone",
   "background_color": "#0d0d1a",
   "theme_color": "#ff4444",

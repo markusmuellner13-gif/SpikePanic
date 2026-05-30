@@ -6,8 +6,8 @@
   <meta name="theme-color" content="#0d0d1a" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-  <meta name="apple-mobile-web-app-title" content="RAGE BALL" />
-  <title>RAGE BALL</title>
+  <meta name="apple-mobile-web-app-title" content="SPIKE PANIC" />
+  <title>SPIKE PANIC</title>
   <link rel="manifest" href="manifest.json" />
   <link rel="icon" type="image/svg+xml" href="icon.svg" />
   <link rel="apple-touch-icon" href="icon192.png" />
@@ -63,14 +63,14 @@
 </head>
 <body>
   <div id="pre-load">
-    <h1>RAGE BALL</h1>
+    <h1>SPIKE PANIC</h1>
     <p>Preparing your suffering...</p>
   </div>
   <script type="module" src="/src/main.js"></script>
   <script>
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', () => {
-        navigator.serviceWorker.register('/GameRage/sw.js').catch(() => {});
+        navigator.serviceWorker.register('/SpikePanic/sw.js').catch(() => {});
       });
     }
     window.__RAGE_READY = false;

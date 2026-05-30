@@ -1,7 +1,7 @@
 import { defineConfig } from 'vite';
 
 export default defineConfig({
-  base: '/GameRage/',
+  base: '/SpikePanic/',
   build: {
     outDir: 'dist',
     assetsDir: 'assets',

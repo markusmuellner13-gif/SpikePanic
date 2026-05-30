@@ -1,7 +1,7 @@
 {
-  "name": "rage-ball",
+  "name": "spike-panic",
   "version": "1.0.0",
-  "description": "RAGE BALL - One ball. Infinite rage. Zero mercy.",
+  "description": "SPIKE PANIC - Dodge. Jump. Rage. Repeat.",
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -19,8 +19,8 @@
     "electron-builder": "^24.13.0"
   },
   "build": {
-    "appId": "com.rageball.game",
-    "productName": "RAGE BALL",
+    "appId": "com.spikepanic.game",
+    "productName": "SPIKE PANIC",
     "directories": { "output": "release" },
     "win": { "target": "nsis", "icon": "public/icon.ico" },
     "mac": { "target": "dmg", "icon": "public/icon.icns" },

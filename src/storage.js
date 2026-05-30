@@ -1,7 +1,7 @@
-const KEY = 'rageball_save';
+const KEY = 'spikepanic_save';
 
 const DEFAULT = {
-  playerName: 'RAGE KING',
+  playerName: 'SPIKE KING',
   selectedSkin: 'rage',
   ownedSkins: ['rage', 'cool'],
   coins: 0,
@@ -17,19 +17,25 @@ const DEFAULT = {
   settings: {
     musicVol: 0.5,
     sfxVol: 0.8,
+    musicEnabled: true,
+    sfxEnabled: true,
     showDeaths: true,
     showTips: true,
     rageMessages: true,
+    screenShake: true,
+    showFps: false,
   },
   leaderboard: [],
 };
 
 function load() {
   try {
-    const raw = localStorage.getItem(KEY);
+    // Support migrating old rageball_save key
+    const legacy = localStorage.getItem('rageball_save');
+    const raw = localStorage.getItem(KEY) || legacy;
     if (!raw) return { ...DEFAULT };
     const data = JSON.parse(atob(raw));
-    return { ...DEFAULT, ...data };
+    return { ...DEFAULT, ...data, settings: { ...DEFAULT.settings, ...(data.settings || {}) } };
   } catch {
     return { ...DEFAULT };
   }
@@ -115,6 +121,27 @@ export const Storage = {
     _state.leaderboard.sort((a, b) => a.deaths - b.deaths || a.time - b.time);
     if (_state.leaderboard.length > 50) _state.leaderboard = _state.leaderboard.slice(0, 50);
     save(_state);
+  },
+  exportSave() {
+    return JSON.stringify(_state, null, 2);
+  },
+  importSave(json) {
+    try {
+      const data = JSON.parse(json);
+      _state = { ...DEFAULT, ...data, settings: { ...DEFAULT.settings, ...(data.settings || {}) } };
+      save(_state);
+      return true;
+    } catch {
+      return false;
+    }
+  },
+  getSaveSize() {
+    try {
+      const raw = localStorage.getItem(KEY) || '';
+      return Math.round(raw.length * 0.75 / 1024 * 10) / 10;
+    } catch {
+      return 0;
+    }
   },
   reset() {
     _state = { ...DEFAULT };

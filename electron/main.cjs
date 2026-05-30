@@ -10,7 +10,7 @@ function createWindow() {
     height: 720,
     minWidth: 800,
     minHeight: 450,
-    title: 'RAGE BALL',
+    title: 'SPIKE PANIC',
     icon: path.join(__dirname, '../public/icon.svg'),
     webPreferences: {
       nodeIntegration: false,
@@ -23,7 +23,7 @@ function createWindow() {
   });
 
   // Load built game in production, dev server in development
-  const devURL = 'http://localhost:3000/GameRage/';
+  const devURL = 'http://localhost:3000/SpikePanic/';
   const prodFile = path.join(__dirname, '../dist/index.html');
 
   if (process.env.NODE_ENV === 'development' || !fs.existsSync(prodFile)) {

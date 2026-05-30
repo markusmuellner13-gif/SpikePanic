@@ -33,8 +33,8 @@ export class MenuScene extends Phaser.Scene {
       duration: 2500, yoyo: true, repeat: -1, ease: 'Sine.easeInOut',
     });
 
-    // RAGE BALL Title
-    const title = this.add.text(W / 2, 80, 'RAGE BALL', {
+    // SPIKE PANIC Title
+    const title = this.add.text(W / 2, 80, 'SPIKE PANIC', {
       fontFamily: '"Press Start 2P"',
       fontSize: '54px',
       color: '#ff4444',
@@ -48,7 +48,7 @@ export class MenuScene extends Phaser.Scene {
       duration: 1200, yoyo: true, repeat: -1, ease: 'Sine.easeInOut',
     });
 
-    this.add.text(W / 2, 130, 'One ball.  Infinite rage.  Zero mercy.', {
+    this.add.text(W / 2, 130, 'Dodge. Jump. Rage. Repeat.', {
       fontFamily: '"Press Start 2P"', fontSize: '9px', color: '#884444',
     }).setOrigin(0.5);
 
