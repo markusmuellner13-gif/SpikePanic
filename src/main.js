@@ -8,6 +8,7 @@ import { AccountScene }   from './scenes/AccountScene.js';
 import { ShopScene }      from './scenes/ShopScene.js';
 import { LeaderScene }    from './scenes/LeaderScene.js';
 import { MultiScene }     from './scenes/MultiScene.js';
+import { CreditsScene }   from './scenes/CreditsScene.js';
 import { Audio }          from './audio.js';
 import { Storage }        from './storage.js';
 
@@ -41,6 +42,7 @@ const config = {
     ShopScene,
     LeaderScene,
     MultiScene,
+    CreditsScene,
   ],
 };
 

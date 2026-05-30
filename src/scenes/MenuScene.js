@@ -92,10 +92,11 @@ export class MenuScene extends Phaser.Scene {
       });
     });
 
-    // Settings + Account icons (bottom row)
+    // Settings + Account + Credits icons (bottom row)
     const iconBtns = [
-      { label: '⚙ SETTINGS', scene: 'SettingsScene', x: W / 2 - 140 },
-      { label: '👤 ACCOUNT',  scene: 'AccountScene',  x: W / 2 + 140 },
+      { label: '⚙ SETTINGS', scene: 'SettingsScene', x: W / 2 - 210 },
+      { label: '👤 ACCOUNT',  scene: 'AccountScene',  x: W / 2       },
+      { label: '📄 CREDITS',  scene: 'CreditsScene',  x: W / 2 + 210 },
     ];
     iconBtns.forEach(({ label, scene, x }) => {
       const t = this.add.text(x, H - 24, label, {
